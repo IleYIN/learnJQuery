@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	// 	$(function() {
+	// 		var nodes = document.getElementById("ulId").childNodes;
+	// 		// 		alert(nodes.length);
+
+	// 		// 		alert($("#ulId>*").length);
+	// 		//jquery把文本节点忽略掉了 而dom里认为空白文本也是一个child
+	// 		$("ul li:nth-child(2n-1)").css("color", "red");
+	//      nth-child()从1开始,且默认只找子元素，虽然空格代表后代元素
+	//		ul nth-child(2) 和 ul eq(1) 找出来的不一定一样，因为空格是从所有后代元素开始算，eq()从0开始
+	// 	});
+
+	/*  
+		表单对象选择器
+			:input	选择所有的input框，匹配所有input,textarea,select和button元素
+			:text	单行文本框
+			:password 密码框
+			:radio	单选框
+			:checkbox 复选框
+			:submit 提交按钮
+			:image
+			:reset	重置按钮
+			:button 匹配button或者input的button
+			:file	文件选择项
+			:hidden	隐藏项
+			
+		表单对象的属性
+			:enabled	可用的
+			:diabled	不可用的
+			:checked	选择的，checkbox或单选按钮的选择 复选框、单选框等，不包括下拉列表select中的option 
+			:selected	选择的，下拉列表的选择，匹配所有选中的option元素
+		
+		设置value值 .val
+	 */
+	$(function() {
+		$("#btn01").click(function() {
+// 			$("input:enabled").val("new value");
+// 			$("input:disabled").val("disabled");
+// 			alert($(":checkbox:checked").size());
+
+			/* var eles = $(":checkbox:checked");
+			for(var i=0;i<eles.size();i++){
+// 				alert(eles[i].value);
+				alert($(eles[i]).val());
+	
+			} */
+			
+// 			alert($(":selected").size());
+// 			$(":selected").css("color","red");
+			$(":selected").each(function(){
+// 				alert(this);//js的this
+				alert(this.innerText);
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<ul id="ulId">
+		<!-- 		aaaaa -->
+		<!-- 		<span>bbbbb</span> -->
+		<li><b>你好1</b></li>
+		<li>你好2</li>
+		<li>你好3</li>
+		<li>你好4</li>
+		<li>你好5</li>
+		<li>你好6</li>
+		<li>你好7</li>
+		<li>你好8</li>
+	</ul>
+	<br />
+	<br />
+	<button id="btn01">click</button>
+	<br />
+	<br />
+	<input type="text" value="1" />
+	<br />
+	<input type="text" disabled="disabled" />
+	<br />
+	<input type="text" value="3" />
+	<br />
+	<br />
+	
+	
+	<input type="checkbox" name="items" value="a" />a
+	<input type="checkbox" name="items" value="b" />b
+	<input type="checkbox" name="items" value="c" />c
+	<input type="checkbox" name="items" value="d" />d
+	<br />
+	<br />
+	
+	<select name="test" multiple="multiple" style="height: 100px">
+		<option>A</option>
+		<option selected="selected">B</option>
+		<option>C</option>
+		<option selected="selected">D</option>
+		<option>E</option>
+	</select>
+	<br />
+	<br />
+	
+	<select name="test">
+		<option>A</option>
+		<option>B</option>
+		<option>C</option>
+		<option selected="selected">D</option>
+		<option>E</option>
+	</select>
+	<br />
+	<br />
+	
+	
+	<form action="04-testform.html">
+		<input type="text" /><br /> <input type="submit"><br />
+		<button>提交</button>
+	</form>
+	<textarea rows="5" cols="10"></textarea>
+</body>
+</html>

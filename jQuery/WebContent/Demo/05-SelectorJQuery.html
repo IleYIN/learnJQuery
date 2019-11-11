@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		/* $("#btn1").click(function() {
+			$("div").css("color", "#bfa");
+		}); */
+
+		//eq(index) 选出索引为index的元素 
+		//index 为正数 从0开始	为负数从-1开始倒数
+		$("#btn1").click(function() {
+			$("div").eq(2).css("color", "#bfa");
+		});
+
+		//first() 选取第一个
+		$("#btn2").click(function() {
+			$("div").first().css("color", "#bfa");
+		});
+		//last() 选取最后一个
+
+		//filter() 筛选出指定表达式匹配的元素集合
+		$("#btn3").click(function() {
+			//$("div:even").css("color", "#bfa");
+			//$("div:not(:even)").css("color", "#bfa");
+			//$("div").filter(":even").css("color", "#bfa");
+			$("div").filter(":not(:even)").css("color", "#bfa");
+		});
+
+		//is() 判断是否符合指定的选择器，传入选择器字符
+		$("#btn4").click(function() {
+			//var flag = $("#one").is("#two");
+			//var flag = $("#one").is(":empty");
+			//var flag = $("#empty").is(":empty");
+			var flag = $("div:first>div:eq(1)").is(":empty");
+			alert(flag);
+		});
+
+		//has(selector)
+		$("#btn5").click(function() {
+			$("div").has("div").css("color", "#bfa");
+		});
+
+		//not(selector)
+		$("#btn6").click(function() {
+			$("p").not("#p2").css("color", "#bfa");
+		});
+
+		//children() children(selector)  选出所有子元素或满足条件的子元素
+		$("#btn7").click(function() {
+			//$("body").children(".b").css("color", "#bfa");
+			$("body").children().children(".b").css("color", "#bfa");
+		});
+
+		//find()  选出所有后代元素
+		$("#btn8").click(function() {
+			$("body").find(".b").css("color", "#bfa");
+		});
+
+		//next() 选下一紧邻的兄弟元素  next(selector判断)
+		//nextAll() 选择后面所有的兄弟元素(从第一个满足的开始)
+		//nextUntil() 选择当前元素与匹配的兄弟元素之间的元素(从第一个满足的开始)
+		$("#btn9").click(function() {
+			//$("#one").next().css("color", "#bfa");
+			//$("#one").next("p").css("color", "#bfa");
+			//$("#one").nextAll("p").css("color", "#bfa");
+			$("#one").nextUntil("p").css("color", "#bfa");
+		});
+
+		//parent() 选出父元素
+		$("#btn10").click(function() {
+			$(".c").parent().css("color", "#bfa");
+		});
+
+		//prev() 选出上一个兄弟元素
+		//prevAll() 选出前面所有的兄弟元素(从最后一个满足的开始)
+		//prevUntil()  选出当前元素与匹配的兄弟元素之间的元素(从最后一个满足的开始)
+		$("#btn11").click(function() {
+			//$(".c").prev().css("color", "#bfa");
+			//$(".c").prevAll().css("color", "#bfa");
+			$(".c").prevUntil("#subone").css("color", "#bfa");
+		});
+
+		//siblings() 选出所有兄弟元素(不包括自己)
+		$("#btn12").click(function() {
+			$("#one").siblings().css("color", "#bfa");
+		});
+
+		//add() 合并所有选择器的结果
+		$("#btn13").click(function() {
+			//$(".b,p").css("color", "#bfa");
+			$(".b").add("p").add(".c").css("color", "#bfa");
+		});
+
+		//andSelf() 包括自己
+		$("#btn14").click(function() {
+			$("#one").siblings().andSelf().css("color", "#bfa");
+		});
+
+		//end() 
+		$("#btn15").click(function() {
+			//end() 回到上一步(不考虑最后一个)
+			//$("#one").children(".b").end().css("color", "#bfa");
+			//$("#one").children(".b").find("p").css("color", "#bfa");
+			//$("#one").children(".b").find("p").end().css("color", "#bfa");
+			$("#one").children(".b").find("p").end().end().css("color", "#bfa");
+		});
+	});
+</script>
+</head>
+<body>
+	<button id="btn1">btn1</button>
+	<button id="btn2">btn2</button>
+	<button id="btn3">btn3</button>
+	<button id="btn4">btn4</button>
+	<button id="btn5">btn5</button>
+	<button id="btn6">btn6</button>
+	<button id="btn7">btn7</button>
+	<button id="btn8">btn8</button>
+	<button id="btn9">btn9</button>
+	<button id="btn10">btn10</button>
+	<button id="btn11">btn11</button>
+	<button id="btn12">btn12</button>
+	<button id="btn13">btn13</button>
+	<button id="btn14">btn14</button>
+	<button id="btn15">btn15</button>
+	<div id="one">
+		I'm div
+		<div id="subone" class="a">I'm sub-div</div>
+		<div class="b">I'm sub-div2</div>
+		<div class="b">
+			I'm sub-div3
+			<p>pppppp</p>
+		</div>
+		<div class="c">I'm sub-div4</div>
+		<div class="b">I'm sub-div5</div>
+		<div class="c"></div>
+	</div>
+	<div id="two">I'm another div</div>
+	<div>I'm another div</div>
+	<div>I'm another div</div>
+	<div>I'm another div</div>
+	<div>
+		I'm another div
+		<div class="b">I'm sub div</div>
+		<div class="c">I'm sub div2</div>
+	</div>
+	<div>I'm another div</div>
+	<div id="empty"></div>
+	<p>Hello</p>
+	<p id="p2" class="b">Hello again</p>
+</body>
+</html>

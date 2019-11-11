@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	/*
+		基本选择器：字符串
+		$()
+		$(#id)
+		$(tagname)
+		$(.class)
+		$(*) 所有
+		$(selector1, selector2, ...) 并集
+		$(selector1selector2...) 交集
+		
+		层次选择器
+		ancestor descendant
+		parent > child
+		prev + next 紧接着prev元素后的next元素
+		prev ~ siblings  prev元素后的所有兄弟元素
+		
+		基本过滤选择器
+		:first
+		:last
+		:not(selector) 除了selector之外的元素
+		:even	索引为偶数的元素
+		:odd	索引为奇数的元素
+		:eq(index)	索引等于index的元素 index从0开始
+		:gt(index)	索引小于index的元素
+		:lt(index) 	索引小于index的元素
+		:header		所有的标题标签h1~h6
+		:animated	所有正在执行动画的元素
+		
+		内容过滤选择器
+		:contain(text)	包含指定文本
+		:empty 		所有不包含子元素或者文本的空元素
+		:has(selector)	含有选择器所匹配的元素的元素
+		:parent		含有子元素或者文本的元素
+		
+		可见性选择器
+		:hidden  (含有属性display:none;)或者(visible:hidden)
+		:visible
+		
+		
+		属性过滤选择器
+		.attr(属性名) 获取属性名的值
+		.attr(属性名,值)	 赋值
+		.attr({...})	传入JS对象
+		
+		[attribute]	选择包含该属性的元素  如包含id的div是div[id]
+		[attribute=value]	attribute属性值等于value的元素 name="username"
+		[attribute!=value]	没有该属性或者值不为value
+		[attribute^=value]	属性值以value开头
+		[attribute$=value]	属性值以value结尾
+		[attribute*=value]	属性值包含value 如div[title*="es"]
+		[attrSel1][attrSel2][attrSelN]	同时满足[]里的所有条件的元素
+		
+		子元素过滤选择器  注意要有空格  父元素选择器 空格 子元素选择器
+		:nth-child(index) index从1开始
+		:first-child
+		:last-child
+		:only-child	只有这一个子元素
+		注意jquery把文本节点忽略掉了 而dom里认为空白文本也是一个child
+*/
+	$(function(){
+		
+		$("#btn01").click(function(){
+// 			$("#testDiv").css("color","red");
+// 			$("div").css("color","blue");
+// 			$(".aaa").css("color","pink");
+// 			$("div:hidden").show("slow").css("background","#bfa");
+// 			alert($("#btn01").attr("value"));
+// 			$("div[id*='Div']").css("color","green");
+			$("div.tesetDiv :nth-child(2)").css("color","blue");
+		});
+	});
+	
+</script>
+</head>
+<body>
+	<div id="testDiv">test
+		<div>child1</div>
+		<div>child2</div>
+		<div>child3</div>
+		<div>child4</div>
+	</div>
+	<div id="testDiv2">test2</div>
+	<div id="testDiv3">test3</div>
+	<div id="test4">test3</div>
+	<div class="aaa" style="display:none;">testaaa</div>
+	<input type="button" value="选择" id="btn01" />
+</body>
+</html>

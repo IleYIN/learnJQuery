@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- 
+	核心函数作用
+		1)传入的参数为 函数 时，文档加载完成后执行函数 $(function(){});
+		2)传入的参数为 HTML字符串 时， 创建节点对象 $("<p>你好</p>");
+		3)传入的参数为 选择器字符串 时，按照选择器找出元素 $("#id");
+		4)传入的参数为 DOM对象 时，把dom对象转为jquery对象 $(dom对象);
+	
+	dom对象：原生js获取的创建的对象都是dom对象
+	jQuery对象：用jquery创建或者获取的对象都是jQuery对象
+	相互转化：dom 转 jquery  $(dom对象)
+		   jQuery 转 dom	 jquery查找到的元素返回的都是dom对象的数组
+		   				 通过数组下标的方式获取即可	$("p")[0]
+  -->
+<script type="text/javascript" src="../script/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var btn01 = document.getElementById("dom2dom");	
+		btn01.onclick = function(){
+			var divEleDom = document.getElementById("testDiv");
+			divEleDom.style.color = "red";
+		};
+
+		//dom对象不能使用jquery的css()方法
+		var btn02 = document.getElementById("dom2jQuery");	
+		btn02.onclick = function(){
+			var divEleDom = document.getElementById("testDiv");
+// 			divEleDom.css("color","red");//这样不行
+			$(divEleDom).css("color","blue");
+		};
+		
+		$("#jQuery2jQuery").click(function(){
+			$("#testDiv").css("color","green");
+		});
+
+		$("#jQuery2dom").click(function(){
+			$("#testDiv")[0].style.color = "yellow";
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<div id="testDiv">DOM和JQuery对象和调用方法</div>
+	
+	<button id="dom2dom">使用DOM对象调用DOM方法</button>
+	<button id="dom2jQuery">使用DOM对象调用jQuery方法</button>
+	<button id="jQuery2jQuery">使用jQuery对象调用jQuery方法</button>
+	<button id="jQuery2dom">使用jQuery对象调用DOM方法</button>
+</body>
+</html>

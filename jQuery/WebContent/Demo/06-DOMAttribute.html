@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+/**
+ * 
+ HTML代码/文本/值
+ html()	innerHTML 如果不传参数则是获取元素里的html代码；如果传入，则是替换内容
+ text()
+ val()
+ */
+	$(function() {
+		$("#btn1").click(function() {
+			//alert($(this).html());//this代表当前被点击的dom对象
+			//alert($(this).text());
+			//$(this).html("<i>button</i>");
+			//$(this).text("<i>button</i>");
+			
+		});
+		
+			//val()获取标签的value值
+		$("#btn2").click(function(){
+			//.val() 获取值   .val(参数) 赋值
+			//alert($("input[name='a']").val());
+			$("input[name='a']").val("new value");//或者去掉input
+			
+		});
+
+			//attr() 传入一个参数，获取参数值；传入两个参数，为前面属性赋值
+		$("#btn3").click(function(){
+			//alert($(":checkbox:eq(2)").attr("name"));//或者加上input "input:checkbox"
+			//alert($(":checkbox:eq(2)").attr("type"));
+			$(":checkbox:eq(2)").attr("value","new value");
+			alert($(":checkbox:eq(2)").attr("value"));
+		});
+			//prop() 获取属性值；设置属性值
+		$("#btn4").click(function(){
+			//alert($(":checkbox:eq(1)").prop("checked"));
+			//alert($(":checkbox:eq(1)").attr("checked"));
+			$(":checkbox:eq(1)").prop("checked",true);
+			//标签固定支持的属性是原生属性，也可以自定义属性
+			//attr会返回undefined，故原生属性用prop不用attr，自定义属性用attr
+		});
+			
+		$("p").click(function(){
+			//this代表当前点击的对象 dom对象
+			//alert(this.innerHTML);
+			//隐式迭代
+			//alert($(this).text());
+		});
+		//数组没有jquery属性,这样不行
+		/*
+		var pEles = document.getElementsByTagName("p");
+		$(pEles).onclick = function(){
+			alert("hiiii");
+		}
+		*/
+		
+		$("table:eq(0) tr:even").css("background-color","#bbccff");
+		$("button").click(function(){
+			alert($(":checkbox:checked").length);
+		});
+	
+	});
+</script>
+</head>
+<body>
+	<button id="btn1"><i>btn1</i></button>
+	<button id="btn2">btn2</button>
+	<button id="btn3">btn3</button>
+	<button id="btn4">btn4</button>
+	<button id="btn5">btn5</button>
+	<button id="btn6">btn6</button>
+	<button id="btn7">btn7</button>
+	<form action="#" id="form1">
+		文本框：<input name="a" value="abc" type="text"/><br/>
+		多选框：<input type="checkbox" name="interest" value="basketball" checked="checked">
+		<input type="checkbox" name="interest" value="football">
+		<input type="checkbox" name="interest" value="pingpong">
+		<input type="checkbox" name="interest" value="baseball">
+	</form>
+	<br>
+	<hr>
+	<br>
+	<p>para 1</p>
+	<p>para 2</p>
+	<p>para 3</p>
+	<br>
+	<hr>
+	<br>
+	<table>
+		<tr>
+			<td>t1l1</td><td>t1l1</td>
+		</tr>
+		<tr>
+			<td>t1l2</td><td>t1l2</td>
+		</tr>
+		<tr>
+			<td>t1l3</td><td>t1l3</td>
+		</tr>
+		<tr>
+			<td>t1l4</td><td>t1l4</td>
+		</tr>
+		<tr>
+			<td>t1l5</td><td>t1l5</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>t2l1</td><td>t2l1</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>t3l1</td><td>t3l1</td>
+		</tr>
+	</table>
+	
+	<br>
+	<hr>
+	<br>
+	<input type="checkbox" name="test" />
+	<input type="checkbox" name="test" />
+	<input type="checkbox" name="test" />
+	<input type="checkbox" name="test" />
+	<input type="checkbox" name="test" />
+	<input type="checkbox" name="test" />
+	<button>number of checked</button>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+/**
+ * 
+ */
+	$(function() {
+		var items = $(":checkbox[name='items']");
+		//全选
+		$("#checkedAllBtn").click(function(){
+			//或$(":checkbox[name='items']").add("#checkedAllBox").prop("checked",true);
+			$(":checkbox[name='items'],#checkedAllBox").prop("checked",true);
+		});
+		
+		//全不选
+		$("#checkedNoBtn").click(function(){
+			items.add("#checkedAllBox").prop("checked",false);
+		});
+		
+		//反选
+		$("#checkedRevBtn").click(function(){
+			items.each(function(){
+				//this就是正在遍历的对象，dom对象
+				var status = $(this).prop("checked");
+				$(this).prop("checked",!status);
+			});
+			//判断全选全不选框
+		/*	var numflag = items.filter(":checked").length;
+			if(items.length == numflag){
+				$("#checkedAllBox").prop("checked",true);
+			} else {
+				$("#checkedAllBox").prop("checked",false);
+			}	*/
+			$("#checkedAllBox").prop("checked",
+				items.filter(":checked").length==items.length?true:false);
+		});
+		
+		//将选中的打印
+		$("#sendBtn").click(function(){
+			items.filter(":checked").each(function(){
+				alert(this.value);
+			});
+		});
+		
+		//全选全不选框
+		$("#checkedAllBox").click(function(){
+			items.prop("checked",this.checked)
+		});
+		
+		//状态同步问题
+		items.click(function(){
+			$("#checkedAllBox").prop("checked",
+				items.filter(":checked").length==items.length?true:false);
+		});
+	});
+</script>
+</head>
+<body>
+	<form method="post" action="">
+		Your favorite sport?<input type="checkbox" id="checkedAllBox"/>全选/全不选
+		<br />
+		<input type="checkbox" name="items" value="basketball"> basketball
+		<input type="checkbox" name="items" value="football"> football
+		<input type="checkbox" name="items" value="pingpong"> pingpong
+		<input type="checkbox" name="items" value="baseball"> badminton 
+		<br />
+		<input type="button" id="checkedAllBtn" value="全 选" />
+		<input type="button" id="checkedNoBtn" value="全不选" />
+		<input type="button" id="checkedRevBtn" value="反 选" />
+		<input type="button" id="sendBtn" value="提 交" />
+	</form>
+</body>
+</html>

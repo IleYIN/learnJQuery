@@ -10,8 +10,11 @@
 			$("div").css("color", "#bfa");
 		}); */
 
+		//contents().length包括文本节点，dom里的.length和children().length不包括文本节点
+		
 		//eq(index) 选出索引为index的元素 
 		//index 为正数 从0开始	为负数从-1开始倒数
+		//空格eq(0)可以获取后代元素，nth-child(1)默认找子元素
 		$("#btn1").click(function() {
 			$("div").eq(2).css("color", "#bfa");
 		});

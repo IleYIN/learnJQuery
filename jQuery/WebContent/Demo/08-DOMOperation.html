@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn1").click(function() {
+			//父节点.append(子节点) 追加到最后面
+			//$("#city").append("<li>new city</li>");
+			$("#city").append($("<li>new city</li>"));
+		});
+		
+		$("#btn2").click(function(){
+			//appendTo() 可以直接传入选择器字符串或者jquery对象
+			//$("<li>new city2</li>").appendTo($("#city"));
+			$("<li>new city2</li>").appendTo("#city");
+		});
+
+		$("#btn3").click(function(){
+			//父节点.prepend(子节点) 追加到前面
+			$("#city").prepend($("<li>new city3</li>"));
+		});
+		
+		$("#btn4").click(function(){
+			//prependTo()
+			$("<li>new city4</li>").prependTo("#city");
+		});
+		
+		$("#btn5").click(function(){
+			//a.before(b) a之前插入b
+			$("#city3").before("<li>new city5</li>");
+		});
+		
+		$("#btn6").click(function(){
+			//a.insertBefore(b) 把a插入b之前
+			$("<li>new city6</li>").insertBefore("#city4");
+		});
+	
+		$("#btn7").click(function(){
+			//a.after(b) a之后插入b
+			$("#city3").after("<li>new city7</li>");
+		});
+		
+		$("#btn8").click(function(){
+			//a.insertAfter(b) 把a插入b之后
+			$("<li>new city8</li>").insertAfter("#city4");
+		});
+		
+		$("#btn9").click(function(){
+			//a.replaceWith(b) 把所有a用b替换
+			$(".city5").replaceWith("<li>new city9</li>");
+		});
+		
+		$("#btn10").click(function(){
+			//a.replaceAll(b) a替换到所有的b
+			$("<li>new city9</li>").replaceAll(".city5");
+		});
+		
+		$("#btn11").click(function(){
+			//a.remove() 删除a节点
+			//a.remove(selector) 删除符合selector的a节点
+			//$(".city5").remove();
+			$(".city5").remove("#r1");
+		});
+
+		$("#btn12").click(function(){
+			//a.empty() 掏空a节点
+			$("div p").empty();
+		});
+		
+		$("#btn13").click(function(){
+			//读取html代码
+			//alert($("div p").html());
+			//设置html代码
+		    //$("div p").html("<b>new p</b>");
+			$("div p").text("<b>new p</b>");
+		});
+		
+		$("#btn14").click(function(){
+			//节点包裹 a.wrap(b) 用b把单个a包裹起来
+			//$("div p").wrap("<div>new div</div>");
+			//a.wrapAll(b) 用b把所有a整个包裹起来
+			//$("div p").wrapAll("<div>new div</div>");
+			//a.wrapInner(b) 用b把a里面的东西包起来
+			$("div p").wrapInner("<i></i>");
+		});
+		
+		$("#btn15").click(function(){
+			//unwrap() 解除包裹，删除其父元素
+			$("div p").unwrap();
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<button id="btn1"><i>btn1</i></button>
+	<button id="btn2">btn2</button>
+	<button id="btn3">btn3</button>
+	<button id="btn4">btn4</button>
+	<button id="btn5">btn5</button>
+	<button id="btn6">btn6</button>
+	<button id="btn7">btn7</button>
+	<button id="btn8">btn8</button>
+	<button id="btn9">btn9</button>
+	<button id="btn10">btn10</button>
+	<button id="btn11">btn11</button>
+	<button id="btn12">btn12</button>
+	<button id="btn13">btn13</button>
+	<button id="btn14">btn14</button>
+	<button id="btn15">btn15</button>
+	
+	<div id="city">city</div>
+	<div id="city1">city1</div>
+	<div id="city2">city2</div>
+	<div id="city3">city3
+		<p>pppp</p>
+	</div>
+	<div id="city4">city4</div>
+	<div id="city5" class="city5">city5</div>
+	<div id="r1" class="city5"><i>city5</i></div>
+	<div class="city5">
+		<p>ppppp</p>
+		<div>city5</div>
+	</div>
+	<div class="city5">city5</div>
+	<div class="city5">city5</div>
+	<div class="city5">city5</div>
+</body>
+</html>

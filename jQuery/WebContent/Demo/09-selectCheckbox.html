@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("input:eq(0)").click(function(){
+			//下拉列表被选中的方式
+			//1.prop("selected",true)
+			//2.为下拉列表赋值为我们要选中的那一项的value值
+			//$("#single :nth-child(3)").prop("selected",true);
+			//$("#single :nth-child(3)").prop("selected","selected");
+			//$("#single").val(["s3"]);
+			$("#single").val("s3");
+		});
+		
+		$("input:eq(1)").click(function(){
+			//下拉列表被选中的方式
+			$("#multiple").val(["choice 2","choice 4"]);
+			//option不指定value，value默认是中间文本
+			//alert($("#multiple option:eq(1)").val());
+		});
+		
+		$("input:eq(2)").click(function(){
+			//多选框被选中的方式
+			$(":checkbox[name='c']").val(["check2","check4"]);
+			//要达到选择的目的val()必须传数组，否则就成了设置值了
+			//$(":checkbox[name='c']").val(["check2"]);
+		});
+
+		$("input:eq(3)").click(function(){
+			//单选框被选中的方式
+			//$(":checkbox[name='c']").val(["check2","check4"]);
+			//要达到选择的目的val()必须传数组，否则就成了设置值了
+			$(":radio[name='r']").val(["radio2"]);
+		});
+
+		$("input:eq(4)").click(function(){
+			//打印所有选中的
+			$(":checked").each(function(){
+				alert($(this).val());
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="singleSelect3"/>	
+	<input type="button" value="multiSelect2and4"/>	<br/>
+	<input type="button" value="multicheckbox2and4"/>	
+	<input type="button" value="singleCheckbox2"/> <br/>
+	<input type="button" value="printChosenValue"/>
+	
+	<br/>
+	
+	<!-- 单选下拉列表 -->
+	<select id="single" name="schoice">
+		<option value="s1">choice 1</option>
+		<option value="s2">choice 2</option>
+		<option value="s3">choice 3</option>
+	</select>
+	
+	<br/>
+	
+	<!-- 多选下拉列表  option不指定value，value默认是中间文本 -->	
+	<select id="multiple" multiple="multiple" style="height:120px;">
+		<option selected="selected">choice 1</option>
+		<option>choice 2</option>
+		<option>choice 3</option>	
+		<option>choice 4</option>	
+		<option selected="selected">choice 5</option>	
+	</select>
+	
+	<br/>
+	
+	<!-- 多选框 -->
+	<input type="checkbox" name="c" value="check1"/> multicheck1
+	<input type="checkbox" name="c" value="check2"/> multicheck2
+	<input type="checkbox" name="c" value="check3"/> multicheck3
+	<input type="checkbox" name="c" value="check4"/> multicheck4
+
+	<br/>
+	
+	<!-- 单选框 -->
+	<input type="radio" name="r" value="radio1"/> singlecheck1
+	<input type="radio" name="r" value="radio2"/> singlecheck2
+	<input type="radio" name="r" value="radio3"/> singlecheck3
+	
+	
+</body>
+</html>

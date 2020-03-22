@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//delete an employee
+		function removeTr(a){
+			var remTr = $(a).parent().parent();
+			var tdEle = remTr.children().first().text();
+			var flag = confirm("are you sure to delete "+tdEle+"?");
+			if(flag){
+				remTr.remove();
+			}
+		}
+		$("a").click(function(){
+			//alert(this);
+			//alert(this.href);
+			//alert($(this).parent().parent()[0].nodeName);
+			removeTr(this);
+			return false;
+		});
+		
+ 		//add an employee
+		$("#addEmpButton").click(function(){
+			var nameText = $("#empName").val();
+			var emailText = $("#email").val();
+			var salaryText = $("#salary").val();
+			//alert(nameText+"->"+emailText+"->"+salaryText);
+			//$("<tr></tr>")
+		/* 	$("#employeeTable").append("<tr></tr>").append()
+			$("<td>"+nameText"</td>")
+			$("<td>"+emailText"</td>")
+			$("<td>"+salaryText"</td>")
+			$("<td><a>delete</a></td>")  */
+	 		var abcEle = $("<tr></tr>").append($("<td>"+nameText+"</td>"))
+				.append($("<td>"+emailText+"</td>"))
+				.append($("<td>"+salaryText+"</td>"))
+				.append($("<td><a href='#'>delete</a></td>"))
+				.appendTo($("#employeeTable"));
+			//alert(abcEle[0].nodeName);
+			//alert(abcEle.find("a").html());
+			abcEle.find("a").click(function(){
+				removeTr(this);
+				return false;
+			});
+			
+			//delete table contents
+			/* $("#empName").val("");
+			$("#email").val("");
+			$("#salary").val(""); */
+			//或者隐式迭代
+			$("input[type='text']").val("");
+		});  
+	});
+</script>
+</head>
+<body>
+	<table id="employeeTable">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Salary</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td>Tom</td>
+			<td>tom@tom.com</td>
+			<td>5000</td>
+			<td><a href="deleteEmp?id=001">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Jerry</td>
+			<td>jerry@jerry.com</td>
+			<td>6000</td>
+			<td><a href="deleteEmp?id=002">Delete</a></td>
+		</tr>
+	</table>
+	
+	<div id="formDiv">
+		<h4>add new employee</h4>
+		<table>
+			<tr>
+				<td class="word">name:</td>
+				<td class="inp">
+					<input type="text" name="empName" id="empName"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="word">email:</td>
+				<td class="inp">
+					<input type="text" name="email" id="email"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="word">salary:</td>
+				<td class="inp">
+					<input type="text" name="salary" id="salary"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button id="addEmpButton" value="abc">
+						Submit
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

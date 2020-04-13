@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		/* 事件从内层到外层的传导，一直传到document
+		阻止方法 return false
+		*/
+		$("span").click(function(){
+			alert("I'm span");
+			return false;
+		});
+		$("div").click(function(){
+			alert("I'm div");
+			return false;
+		});
+		$("body").click(function(){
+			alert("I'm body");
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="content">
+		外层div
+		<span>内层span</span>
+		外层div
+	</div>
+	<div id="msg"></div>
+</body>
+</html>

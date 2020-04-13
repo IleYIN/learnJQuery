@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.promoted a{color:#F50}
+</style>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var lis = $(".SubCategoryBox li:gt(5):not(:last)");
+		var colorChange = $("li:contains('markA'),li:contains('markB')");
+		lis.hide();
+		$(".showMore a").click(function(){
+			lis.toggle();
+			//alert(lis.is(":visible"));
+			//is()在toggle()前执行点击时状态  若放到toggle后则是点击后状态
+			if(lis.is(":visible")){//点击后可见
+				colorChange.addClass("promoted");//.css("color","")
+				$(".showMore a span").text("show less")
+					.css("background-color","blue");
+					//.css("background","url(img/up.gif) no-repeat 0 0");
+			}
+			if(lis.is(":hidden")){//点击后隐藏
+				colorChange.removeClass("promoted");
+				$(".showMore a span").text("show all")
+					.css("background-color","green");
+			}
+			return false;
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="SubCategoryBox">
+		<ul>
+			<li><a href="#">mark</a><i>000</i></li>
+			<li><a href="#">markB</a><i>000</i></li>
+			<li><a href="#">mark</a><i>000</i></li>
+			<li><a href="#">markA</a><i>000</i></li>
+			<li><a href="#">markB</a><i>000</i></li>
+			<li><a href="#">mark</a><i>000</i></li>
+			<li><a href="#">markA</a><i>000</i></li>
+			<li><a href="#">mark</a><i>000</i></li>
+			<li><a href="#">mark</a><i>000</i></li>
+			<li><a href="#">mark2</a><i>002</i></li>
+			<li><a href="#">mark2</a><i>002</i></li>
+			<li><a href="#">markA</a><i>002</i></li>
+			<li><a href="#">mark2</a><i>002</i></li>
+			<li><a href="#">markB</a><i>002</i></li>
+			<li><a href="#">mark2</a><i>002</i></li>
+			<li><a href="#">mark2</a><i>002</i></li>
+		</ul>
+	</div>
+	<div class="showMore">
+		<a href="more.html"><span>show all</span></a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		width:100px;
+		height:260px;
+	}
+	
+	div.border{
+		border:2px green solid;
+	}
+	
+	div.redDiv{
+		background-color: red;
+	}
+	
+	div.blackDiv{
+		border: 5px blue solid;
+	}
+</style>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var $divEle = $('div:first');
+		$('#btn01').click(function(){
+			$divEle.addClass("redDiv blackDiv");
+		});
+		$('#btn02').click(function(){
+			$divEle.removeClass("border");
+		});
+		$('#btn03').click(function(){
+			//检查是否包含
+			//alert($divEle.hasClass("border"));
+			alert($divEle.hasClass("border redDiv blackDiv"));
+		});
+		$('#btn04').click(function(){
+			//toggleClass() 添加或删除类的切换操作
+			$divEle.toggleClass("redDiv");
+		});
+		$('#btn05').click(function(){
+			//css() 设置或返回样式属性
+			alert($divEle.css("background-color"));
+		});
+		$('#btn06').click(function(){
+			//height() 设置或获取高度
+			//$divEle.height("340");
+			//$divEle.height(340);
+			$divEle.height("50%");
+			//alert($divEle.height());
+		});
+		$('#btn08').click(function(){
+			//offset() 返回匹配元素相对于文档的位置
+			//alert($divEle.offset());
+			//var offset = $divEle.offset();
+			//alert(offset.left+"-->"+offset.top);
+			var obj = {top:50,left:10};
+			$divEle.offset(obj);
+		});
+		
+		
+		
+	});
+</script>
+</head>
+<body>
+	<!-- <table align="center"> deprecated in html5, use css instead-->
+	<table style="float:center">
+		<tr>
+			<td height="200px">
+				<div class="border">
+				</div>
+			</td>
+			<td>
+				<div class="btn">
+					<input type="button" value="addClass()" id="btn01">
+					<input type="button" value="removeClass()" id="btn02">
+					<input type="button" value="hasClass()" id="btn03">
+					<input type="button" value="toggleClass()" id="btn04">
+					<input type="button" value="css()" id="btn05">
+					<input type="button" value="height()" id="btn06">
+					<input type="button" value="width()" id="btn07">
+					<input type="button" value="offset()" id="btn08">
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

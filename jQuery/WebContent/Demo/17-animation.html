@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div#areaDiv{
+		width:100px;
+		height:260px;
+		border:2px green solid;
+		background-color: gray;
+	}
+</style>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn01").click(function(){
+			/* show(speed三种速度之一slow/normal/fast字符串或数字毫秒值,
+					easing切换效果默认是swing可换成linear,
+					function回调函数) */
+			$("#areaDiv").show(2000);
+			//$("#areaDiv").show();
+			/* $("#areaDiv").show("fast",function(){
+				alert("fini");
+			}); */
+		});
+		$("#btn02").click(function(){
+			$("#areaDiv").hide("slow");
+		});
+		$("#btn03").click(function(){
+			$("#areaDiv").toggle("slow");
+		});
+		$("#btn04").click(function(){
+			$("#areaDiv").slideDown("fast");
+		});
+		$("#btn05").click(function(){
+			$("#areaDiv").slideUp("fast");
+		});
+		$("#btn06").click(function(){
+			$("#areaDiv").slideToggle("fast");
+		});
+		$("#btn07").click(function(){
+			$("#areaDiv").fadeIn("slow");
+		});
+		$("#btn08").click(function(){
+			$("#areaDiv").fadeOut("fast");
+		});
+		$("#btn09").click(function(){
+			//0-1 透明度
+			$("#areaDiv").fadeTo("slow",0.3);
+		});
+		$("#btn10").click(function(){
+			$("#areaDiv").fadeToggle();
+		});
+		$("#btn11").click(function(){
+			//传入元素的最终样式params
+			//注意js中属性带-的要去掉-然后改大写！
+			//animate()不能用string value除了show hide toggle.https://www.w3schools.com/jquery/eff_animate.asp
+			//可以用jquery-ui或其他方法https://stackoverflow.com/questions/190560/jquery-animate-backgroundcolor
+			var param = {width:"500px",height:"100px",borderWidth:"20px"};
+			$("#areaDiv").animate(param,2000);
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<button id="btn01">show()</button>
+	<button id="btn02">hide()</button>
+	<button id="btn03">toggle()</button>
+	<button id="btn04">slideDown()</button>
+	<button id="btn05">slideUp()</button>
+	<button id="btn06">slideToggle()</button>
+	<button id="btn07">fadeIn()</button>
+	<button id="btn08">fadeOut()</button>
+	<button id="btn09">fadeTo()</button>
+	<button id="btn10">fadeToggle()</button>
+	<button id="btn11">animate</button>
+	<div id="areaDiv" style="display:none">
+	</div>
+	<div id="showMsg"></div>
+</body>
+</html>

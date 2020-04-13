@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div#areaDiv{
+		width:100px;
+		height:260px;
+		border:2px green solid;
+	}
+</style>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+/* 	window.onload = function(){
+		var areaDiv = document.getElementById("areaDiv");
+		var showMsg = document.getElementById("showMsg");
+		//areaDiv.onmouseover 
+		areaDiv.onmousemove = function(event){
+			//响应函数的参数列表里定义一个变量，浏览器就会把事件的对象传入
+			showMsg.innerHTML = "X:"+event.pageX+", Y:"+event.pageY;
+		};
+	}; */
+	$(function() {
+		/* $("#areaDiv").mousemove(function(event){
+			//响应函数的参数列表里定义一个变量，浏览器就会把事件的对象传入
+			$("#showMsg").text("eventType:"+event.type+"--X:"+event.pageX+", Y:"+event.pageY);
+		}); */
+		//处理多个事件
+		$("#areaDiv").bind("click mousemove",function(event){
+			if("click"==event.type){
+				alert($("#showMsg").text());
+			}
+			if("mousemove"==event.type){
+				$("#showMsg").text("X:"+event.pageX+", Y:"+event.pageY);
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="areaDiv">
+	</div>
+	<div id="showMsg"></div>
+</body>
+</html>

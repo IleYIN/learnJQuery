@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+		/*  
+			$(function(){})和window.onload=function(){}的区别
+				1. $(function(){}) dom载入就绪
+				window.onload 是在文档加载完成后执行
+				2. window.onload不能编写多个，jquery可以
+				3. 导入jquery的.js文件，可以在导入文件后的任意位置
+					可以写在head里面或后面，但是一般写在head里的$(function(){jquery代码})
+		*/
+	window.onload = function(){
+		alert("window");
+	};
+	window.onload = function(){
+		alert("window2");
+	};
+	$(function() {
+		alert("jquery");
+	});
+	$(function() {
+		alert("jquery2");
+	});
+</script>
+</head>
+<body>
+</body>
+</html>

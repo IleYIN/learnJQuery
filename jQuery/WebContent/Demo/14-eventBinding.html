@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+		/*  绑定事件
+		*/
+	$(function() {
+/* 		$(".head").click(function(){
+			$(".content:eq(0)").toggle();//show(speed)
+		}); */
+		/* $(".head").bind("click",function(){
+			$(".content:eq(0)").toggle();
+		}); */
+/* 		$(".head").mouseover(function(){
+			$(".content:eq(0)").show();
+		});
+		$(".head").mouseout(function(){
+			$(".content:eq(0)").hide();
+		}); */
+		//链式操作
+	/* 	$(".head").mouseover(function(){
+			$(".content:eq(0)").show();
+		}).mouseout(function(){
+			$(".content:eq(0)").hide();
+		}); */
+		//bind绑定切换
+/* 		$(".head").bind("mouseover mouseout",function(){
+			$(".content:eq(0)").toggle();
+		}); */
+		//只绑定一次
+/* 		$(".head").one("click",function(){
+			alert("hi");
+		}); */
+		//live()已经不存在了，改用on()
+		//https://stackoverflow.com/questions/14354040/jquery-1-9-live-is-not-a-function
+		//可以用on()把动态加载的也绑定click事件
+	/* 	$("#panel").on("click",".head",function(){
+			alert("hi");
+		});
+		$("#panel").append("<br/><h5 class='head'>what's jquery222</h5>"); */
+		//解绑
+/* 		$(".head").bind("mouseover mouseout",function(){
+			$(".content:eq(0)").toggle();
+		});
+		//$(".head").unbind();//全解绑
+		$(".head").unbind("mouseover"); */
+		$(".content").bind("click mouseover", function(){
+			var r = Math.floor(Math.random()*255);
+			var g = Math.floor(Math.random()*255);
+			var b = Math.floor(Math.random()*255);
+			//rgb(200,100,100)
+			$(this).css("background-color","rgb("+r+","+g+","+b+")");
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="panel">
+		<h5 class="head">what's jquery</h5>
+		<div class="content">
+			jquery是继Prototype之后的又一个JavaScript库
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+</style>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#sub_btn").click(function(){
+			var userName = $(".itxt[name='username']").val();
+			var password = $(".itxt[name='password']").val();
+			var email = $(".itxt[name='email']").val();
+			//alert(userName+"->"+password+"->"+email);
+			/* 正则表达式 */
+		/* 	var reg = /a/;
+			alert(reg.test("bc")); */
+			//user 五位到十六位   \d和0-9一样
+			var regUserName = /^[a-zA-Z0-9_-]{5,16}$/;
+			var regPwd = /^[a-zA-Z0-9_-]{5,16}$/;
+			//alert(regUserName.test(userName));
+			if(!regUserName.test(userName)){
+				$(".errorMsg").text("invalid userName");
+				//$(".errorMsg").css("background-color","red");
+				return false;
+			}
+			if(!regPwd.test(password)){
+				$(".errorMsg").text("invalid password");
+				return false;
+			}
+		 	var regEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+			if(!regEmail.test(email)){
+				$(".errorMsg").text("invalid email");
+				return false;
+			}
+			return false;
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="form">
+		<form action="regist_success.html">
+			<label>user name: </label>
+			<input class="itxt" type="text" placeholder="please enter name"
+			autocomplete="off" tabindex="1" name="username"/> 
+			<br/>
+			<br/>
+			<label>confirm code: </label>
+			<input class="itxt" type="password" placeholder="please confirm code"
+			autocomplete="off" tabindex="1" name="password"/> 
+			<br/>
+			<br/>
+			<label>email: </label>
+			<input class="itxt" type="text" placeholder="please enter email"
+			autocomplete="off" tabindex="1" name="email"/> 
+			<br/>
+			<br/>
+			<input type="submit" value="register" id="sub_btn" />
+		</form>
+		<br/>
+		<span class="errorMsg"></span>
+	</div>
+</body>
+</html>

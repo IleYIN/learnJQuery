@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body{
+		text-align:center;
+	}
+	#utb{
+		margin-top:150px;
+	}
+	#in{
+		position:absolute;
+		display:none;
+	}
+</style>
+<script type="text/javascript" src="../script/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#utb").mousemove(function(event){
+			var x = event.pageX;
+			var y = event.pageY;
+			$("#in").show();
+			$("#in").offset({
+				top:y+20,
+				//加偏移量因为倒回去时会进入另一张图片以为不在当前图片，所以第二张图片会消失闪烁
+				left:x+20
+			});
+			//冒泡是针对相同事件的父元素和子元素 此处不适用
+		}).mouseout(function(){
+			$("#in").hide();
+		});
+	});
+</script>
+</head>
+<body>
+	<img id="utb" src = "../img/utb.jpg"/>
+	<div id="in"><img src="../img/in.jpg"/></div>
+</body>
+</html>

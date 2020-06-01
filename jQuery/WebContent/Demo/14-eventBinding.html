@@ -36,7 +36,8 @@
 		}); */
 		//live()已经不存在了，改用on()
 		//https://stackoverflow.com/questions/14354040/jquery-1-9-live-is-not-a-function
-		//可以用on()把动态加载的也绑定click事件
+		//可以用on()把动态加载（js代码执行时还不存在的元素）的也绑定click事件
+		//如果#panel有点击事件发生，让".head"来执行这个事件处理器
 	/* 	$("#panel").on("click",".head",function(){
 			alert("hi");
 		});

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="http://localhost:8080/Servlet/helloWorld">连接</a>
+<h1>请求MyEclipseServlet</h1>
+<form action="MyEclipseServlet" method="post">
+	用户<input type="text" name="username">
+	<input type="submit" value="提交"/>
+</form>
+<h1>post请求</h1>
+<form action="MyEclipseServlet" method="post">
+	用户<input type="text" name="username">
+	<input type="submit" value="提交"/>
+</form>
+<h1>get请求</h1>
+<form action="MyEclipseServlet2" method="get">
+	用户<input type="text" name="username"><br/>
+	爱好：<br/>篮球<input type="checkbox" name="hobby" value="basketball">
+	<br/>足球<input type="checkbox" name="hobby" value="football">
+	<br/>乒乓球<input type="checkbox" name="hobby" value="pingpong">
+	
+	<input type="submit" value="提交"/>
+</form>
+</body>
+</html>

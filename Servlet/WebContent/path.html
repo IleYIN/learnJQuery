@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>我是path</h1>
+<!-- 
+	绝对路径以/开始
+	绝对路径：/经常代表从根开始
+	所有在页面上的绝对路径，/都表示是从服务器的根开始 http://localhost:8080
+	所以在页面写绝对路径需要加上项目名
+ -->
+<a href="http://localhost:8080/Servlet/helloWorld">连接到helloworld</a><br>
+<a href="pages/success2.html">相对路径链接到success2</a><br>
+<a href="/Servlet/pages/success2.html">绝对路径链接到success2</a><br>
+<a href="/Servlet/pages/a.html">绝对路径链接到a页面</a><br>
+<a href="PathServlet">转发/重定向方式绝对路径链接到a页面</a><br>
+</body>
+</html>

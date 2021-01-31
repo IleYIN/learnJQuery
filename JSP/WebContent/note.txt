@@ -1,0 +1,8 @@
+jsp运行原理：
+	1. index.jsp页面被翻译成了一个index_jsp.java-->index_jsp.class
+	2. HttpJspBase继承HttpServlet，所以index_jsp就是一个Servlet
+	3. 每次请求都调用_jspService()
+	web.xml里有JspServlet，来处理所有的*.jsp
+	
+jsp基本语法
+	jsp模板元素：jsp页面中的静态HTML内容

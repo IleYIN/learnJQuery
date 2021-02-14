@@ -5,4 +5,109 @@ jsp运行原理：
 	web.xml里有JspServlet，来处理所有的*.jsp
 	
 jsp基本语法
-	jsp模板元素：jsp页面中的静态HTML内容
+	1. jsp模板元素：jsp页面中的静态HTML内容
+	2. jsp脚本片段 <% %>
+	3. jsp表达式 <%= new Date()%> 不能加分号
+	4. jsp声明 (比较少用) <%! 代码代码代码... %>
+			jsp声明里的代码都会写在_jspService()方法的外面
+			写在test2_jsp.java类的里面
+	5. jsp注释 
+							.jsp文件原代码   jsp.java文件   返回的html页面查看源代码
+		<%-- jsp注释 --%>		可见			不可见			不可见
+		<!-- html注释 -->		可见			可见				可见
+		//java注释   				可见			可见				不可见
+		
+		<%-- jsp注释 --%> 翻译成.java文件时被忽略
+		<!-- html注释 --> 浏览器输出的时候会忽略
+		//java注释		 编译成.class文件时被忽略
+		
+	6. jsp指令 	<%@ 指令名 属性名=属性值%>
+		jsp指令（directive）是为JSP引擎而设计的，它们并不直接产生任何可见输出，
+		而只是告诉引擎如何处理JSP页面中的其余部分
+		<%@ 指令名 属性名=属性值 %>
+		page指令：定义页面是如何解析
+		include指令：静态包含
+		taglib指令：	在页面引入标签库
+		
+		
+		page指令属性：
+		 1）import 用来在页面导包
+		 2）pageEncoding 指定页面使用的字符集，也是告诉jsp引擎使用指定的编码翻译
+		 3）contentType 设置响应头，页面如何响应给浏览器
+		 4）errorPage 指定发生错误去向的页面
+		 5) isErrorPage 表示当前页面是一个错误页面
+		 6) session 默认session是true，当前页面是否参与会话，是否可以使用session对象
+		 7) isELIgnored 是否忽略el表达式，默认false代表不忽略，设置为true-忽略
+		 8) info 定义页面的信息（描述） getServletInfo()
+		 
+		<%@ page language="java" contentType="text/html; charset=UTF-8" 设置响应头编码
+  			  pageEncoding="UTF-8" 设置页面编码（jsp文件的property里的编码方式） %>
+		
+		
+		include指令：静态包含 （见test3.jsp）
+			<%@ include 属性名=属性值%>
+			可以把另外一个页面包含进来，
+			采用的方式是将整个页面复制到service方法里面，
+			jsp引擎不翻译和编译要包含的页面
+			
+	7. jsp标签：jsp里面内置了很多标签，每个标签都有不同的功能，执行一段代码。action元素
+		<jsp:include> 也是页面包含另一个页面 动态包含 （见test3.jsp）
+		page 表示要包含的页面的路径
+		不是把整个页面复制过来一行一行写
+		而是调用了方法动态包含org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "error.jsp", out, false);
+		jsp引擎会把包含的页面先翻译出来(.java)，再编译出来(.class)，再包含
+		
+		<jsp:forward>转发  若不带参数，则标签内一个空格都不要有，否则会报错
+		如： <jsp:forward page="error.jsp"></jsp:forward>
+		转发标签中所带的参数，可以在转发到的页面里通过request.getParameter()获取
+				
+
+jsp九大隐含对象 （见test.jsp）
+	隐含对象：可以直接在页面<% %>中使用的对象
+	
+	final javax.servlet.jsp.PageContext pageContext;
+    javax.servlet.http.HttpSession session = null;
+    java.lang.Throwable exception = org.apache.jasper.runtime.JspRuntimeLibrary.getThrowable(request);
+    final javax.servlet.ServletContext application;
+    final javax.servlet.ServletConfig config;
+    javax.servlet.jsp.JspWriter out = null;
+    final java.lang.Object page = this;
+    final javax.servlet.http.HttpServletRequest request, 
+    final javax.servlet.http.HttpServletResponse response
+	
+	五大常规对象：
+		response 代表当次响应的对象
+		exception(当isErrorPage="true"时有) 代表捕获异常对象
+		config 代表servlet配置信息
+			servlet --> jsp页面对应的servlet
+			config --> jsp页面对应的servlet的配置信息
+			config.getServletName()获取servlet别名
+		out 代表可以在页面输出数据的out对象 out.write();
+		page 代表当前jsp页面(servlet) 
+				page = this; 直接用this
+	
+	
+	四大域对象: 域对象用来在其它资源共享数据
+		pageContext 代表当前页面对象
+			1.获取其它隐含对象 pageContext.getXX();
+			2.作为域对象共享数据。只能在当前页面共享数据，离开页面就无法共享
+				通过调用域对象.setAttribute(key,value)   给相应的域中设置内容
+				String key, Object value
+				域对象 .getAttribute(key) 获取域中的内容
+				
+		request 代表封装当次请求详细信息的对象
+			1.在同一请求中共享数据，只要是同一次请求，就可以共享数据
+			下一个页面需要用前一个页面的数据的时候用转发（forward）否则用重定向
+			
+		session	代表会话对象
+			1.同一次会话共享数据，浏览器打开-开始会话 浏览器关闭-结束会话 
+			会话就是和web应用沟通，所以不同的web应用就是不同会话
+		
+		application 代表整个web应用
+			1.只要在同一web应用中都可以共享数据
+			  web应用只要不卸载都可以访问
+			  
+	
+			  
+	
+	

@@ -1,0 +1,6 @@
+1.模拟学生列表系统
+	访问系统，显示所有的学生列表
+	
+	localhost:8080/Exer_ListStudent/list
+	返回一个学生列表页面
+	

@@ -107,7 +107,65 @@ jsp九大隐含对象 （见test.jsp）
 			1.只要在同一web应用中都可以共享数据
 			  web应用只要不卸载都可以访问
 			  
+	--------------
+	BookStore项目第三阶段
+	1.将所有html页面和相关链接改为jsp，两者之间只差了一个Page指令头
+	2.抽取操作菜单（重复的部分）<%@include file="菜单路径/include/user-info.jsp"%>
+	3.有时需要使用绝对路径，可以使用base标签给相对路径一个基本路径(见BookStore01)
+		base的href属性修改为动态获取
+		协议://主机名:端口号/项目路径
+		<base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"/>
 	
-			  
+	转发时当前资源可能汇编
+		
+	base标签：转发的情况下可能导致页面上的相对路径失效，此时写绝对路径可以保证不失效
+	绝对路径从服务器根开始，所以绝对路径加项目名
 	
+	base标签，为了让页面上的其他相对路径不受当前资源影响，只受base指定的路径影响
+	http://localhost:8080/BookStore02/ 所有的相对路径都是基于base指定的
+	解析出来以后都是http://localhost:8080/BookStore02/页面指定的路径拼出来的
+			
+			
+	------------
+	String method = request.getParameter("method")
+	获取请求参数
+		表单提交的：key-value
+		url地址后面的
+		http://localhost:8080/BookStore02/UserServlet?method=login&username=test123&password=test123
+		?前面是请求地址 ?后面是请求参数
+		对于get请求 request.getParameter 是获取?后面的这些数据
+	
+		post请求：参数在请求体中，可以查看请求报文中的数据
+		
+		<a href="http://localhost:8080/BookStore02/UserServlet?method=login&username=test123&password=test123">链接</a>
+	
+	---------------
+	分层架构 
+	参数封装
+	抽取为一个自动化的工具，根据需求自动封装对象
+	User user - Utils.param2Bean(t)
+	反射
+	request里很多参数，根据要封装的对象获取相应参数进行封装
+	
+	beanutils有丰富的处理javabean的方法
+	commons-beanutils-1.8.3  commons-logging-1.2 
+	
+	http协议 由于request获取的数据都是String类型的，要封装成Bean的话，需要类型转换
+	javaBean 属性
+	getter setter方法中的名字才是javaBean的属性名，而不是声明的变量名
+	getImgPath --> imgPath
+	
+	BeanUtils.populate(t,map);将map中的属性映射到JavaBean中
+	BeanUtils.setProperty(t, name, value);为JavaBean的某个属性赋值
+	-----------
+	
+	BookStore项目第四阶段 使用EL进行表单回显
+	以前是jsp表达式
+	el-> 获取数据方便，如果没有属性就是""，不用做三元运算符
+	
+	------------
+	
+	JSTL: JSP Standard Tag Library JSP标准标签库
+	taglibs-standard-spec-1.2.5
+	taglibs-standard-impl-1.2.5
 	

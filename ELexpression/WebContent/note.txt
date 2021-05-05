@@ -1,0 +1,33 @@
+1. El表达式 expression language
+	简化开发
+	1)在页面显示域中的属性值
+		${属性名}
+	2)要获取对象中的某个属性直接使用 .属性名
+		其中属性名是有get和set方法决定的
+	3)el表达式，如果获取域中的属性，直接写属性名，会从四个域从小到大找，找到就停止
+		el表达式可以连点操作 .xxx.xxx
+	4) el 11个隐含对象 
+		el可以取出本身指定的11个对象中的数据，无法取出自定义的对象数据
+		四个域对象，是从这四个域对象中取值 map
+		pageContext域中的数据 
+		 - pageScope(封装了pageContext域中所有的共享数据 setAttr, getAttr), 是一个java.util.Map
+		request域
+		 - requestScope(封装了request域中的所有数据 setAttr, getAttr), 是一个Map  注意域和参数没关系，不能用getParameter
+		session域
+		 - sessionScope(封装了session域中的所有数据 setAttr, getAttr), 是一个Map
+		application域
+		 - applicationScope(封装了application域中的所有数据 setAttr, getAttr), 是一个Map
+		
+		javabean取的时候如果不存在会报错
+		el取出域中属性获取map中的key值，如果为空会显示""而不是null，如果有则回显
+		
+		-------
+		
+		一个非map对象
+		pageContext就代表的是jsp隐含对象中的pageContext,取出其他的隐含对象
+		
+	5) el表达式如何获取stu-x这种特殊的属性 特殊符号有歧义
+		使用['属性名']  取Map中的属性，可以使用 .属性名 或者 ['属性名']
+		['']必须加引号，单引号或者双引号均可
+		
+		

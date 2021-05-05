@@ -1,0 +1,47 @@
+1.需求分析，建立模型
+1）建立登录注册相关模型（bean层）
+	a) 建立用户表：当数据表很多的时候，也需要分层，一般按照命名规划分层即可
+	sys_user
+	bbs_content
+	auth_name
+	bs_user: 主键-自增；username-varchar; password-varchar; email-varchar
+	
+postgresql:
+
+CREATE DATABASE bookstore_01;
+CREATE TABLE bs_user(
+	id serial PRIMARY KEY,
+	username varchar(100) NOT NULL UNIQUE,
+	password varchar(100) NOT NULL,
+	email varchar(100)
+)
+
+	b) 建立user类（bean）java
+2）建立Dao层：操作数据库
+	a) JDBCUtils 用来获取数据库连接，使用c3p0获取连接，导包
+	
+	建立BaseDao，专门用来被其它的Dao继承，BaseDao定义一些基本的操作
+	BaseDao<T>
+		public T getBean()
+		public List<T> getBeanList()
+		public int update()
+
+	b) UserDao 操作User表的Dao类
+	    面向接口编程
+		定义一个UserDao接口；定义UserDao有什么方法
+		UserDao接口：
+			User getUserByUserNameAndPassword(User user);
+			boolean registerUser(User user);
+
+3）建立Service层 
+	a) UserService：主要就是完成用户的登录注册功能
+	面向接口编程
+	UserService接口
+		User login(User user)
+		boolean regist(User user)
+
+4）建立Servlet层：处理用户的请求
+5）界面
+
+
+

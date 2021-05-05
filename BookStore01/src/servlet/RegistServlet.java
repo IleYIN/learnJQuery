@@ -40,7 +40,10 @@ public class RegistServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/pages/user/regist-success.html");
 		} else {
 			//注册失败 返回注册页面，重新注册 转发
-			request.getRequestDispatcher("/pages/user/regist.html").forward(request, response);
+			//request.getRequestDispatcher("/pages/user/regist.html").forward(request, response);
+			
+			request.setAttribute("msg", "用户已存在");
+			request.getRequestDispatcher("/pages/user/regist.jsp").forward(request, response);
 		}
 	}
 

@@ -1,0 +1,80 @@
+JSTL 
+	JSTL: JSP Standard Tag Library JSP标准标签库
+	有很多标签可以使用，极大简化开发
+	1. 导包：taglibs-standard-spec-1.2.5
+		taglibs-standard-impl-1.2.5
+	2. 在页面导入标签库
+		导入标签库的指令page include taglib
+		1)核心标签库 c标签库
+		<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+		prefix定义标签的前缀<jsp:forward> uri为标签库的唯一识别符
+		2)使用核心标签库
+		<c:out>用于计算一个表达式并将结构输出到当前页面
+			value: 代表要输出的内容 可以是el表达式
+			defaut: 表示默认值
+			escapeXml: 表示是否转义特殊字符，默认为true
+		-------
+		<c:set>用于添加或修改域中的属性
+			<c:set var="" property="" scope="" target="" value=""></c:set>
+			A.给域中设置一个属性
+			<c:set var="key" value="value" scope="request></c:set>
+			var:表示要设置的属性的key
+			value:表示要设置的属性的value
+			scope:表示要设置在哪个域中，如pageScope scope="page"
+				  还可以是"page" "request" "session" "application"
+			B.修改对象的某个属性值  
+			<c:set var="" property="" scope="" target="" value=""></c:set>
+			property:代表要修改的属性名
+			value:修改后的值
+			target:代表修改哪个对象
+		-------
+		<c:remove>用来移除域中的属性
+			<c:remove var="" scope=""/>
+			var:要移除的属性的key
+			scope:要移除哪个域中的属性，如果不指定移除哪个域中的属性，那么久全部移除
+		--------
+		<c:if>
+			<c:if test="" scope="" var=""></c:if>
+			test:判断条件，如果是true执行标签体里的内容否则不执行
+			scope:指定判断结果保存到哪个域中
+			var:指定key值
+		--------
+		<c:choose><c:when><c:otherwise>组合
+		<c:choose>选择，从这里开始分支判断 switch case
+		<c:choose>
+			<c:when test="${stu.age>18}">
+				当when中的条件满足，执行标签体
+			</c:when>
+			<c:otherwise>
+				否则执行otherwise的标签体
+			</c:otherwise>
+		</c:choose>
+		----------
+		<c:forEach begin="" end="" items="" step="" var="" varStatus="">
+			forEach标签体就相当于循环体
+		</c:forEach>
+			begin 指定遍历的开始位置
+			end 指定遍历的结束位置
+			items 要遍历的东西list array...
+			step 步长 一次跳过多少
+			var 指定遍历的当前条目的变量名
+			varStatus 遍历状态，里面封装了当前遍历的状态的详细信息
+				<th>status.begin</th>开始的索引
+				<th>status.end</th> 结束的索引
+				<th>status.step</th>遍历的步长
+				<th>status.count</th>当前遍历的个数
+				<th>status.index</th>当前遍历的索引
+				<th>status.last</th> 是否为最后一个
+		-----------
+		<c:url value="index.jsp" var="uri" scope="request"></c:url>
+		value 指定要改装的路径
+		var 把改装后的返回值放到request域中var属性中，方便后面获取
+		------------
+	-------------------
+	JSTL函数 
+	基本上都是对字符串的操作
+	<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	fn:contains和fn:containsIgnoreCase
+	fn:contains(String,subString) -> boolean
+			
+		

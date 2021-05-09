@@ -1,0 +1,64 @@
+cookie 服务器发给浏览器要保存的数据，浏览器保存相关数据
+HTTP是无状态协议：
+	无状态：服务器无法分辨每次的请求来自谁
+	如果客户端来的时候能带上类似会员卡的东西记录卡号
+	
+	服务器发给浏览器的“会员卡”
+	服务器让浏览器去保存一份数据，以后访问的时候带上相应的数据
+	服务器发给浏览器
+	
+	Cookie: 在浏览器端缓存数据的一种技术
+	
+	1、cookie创建发送给浏览器，response header响应头多了：Set-Cookie:username=namevalue
+		就是命令浏览器保存一个cookie： username=namevalue
+		浏览器就保存这个字段，默认在一个会话期间只要访问这个项目，cookie都在
+		
+		以后只要是请求当前项目下的资源都会自动携带cookie在request header中
+	2、获取
+		Cookie[] cookies = request.getCookies();
+	3、删除
+		cookie的生命周期
+			- 默认cookie是在会话期间有效（浏览器一致不关）
+			- cookie可以修改默认的存活时间
+			Set-Cookie: username=namevalue; Expires=Thu, 01-Jan-1970 00:00:10 GMT
+	4、持久化cookie
+		cookie.setMaxAge(60*60) 表示一小时后cookie才会被删除（浏览器自己会删除）
+	5、设置cookie路径：告诉浏览器访问哪些资源会携带这个cookie
+		默认：访问当前项目下的任何东西都会携带cookie
+	6、修改cookie
+		浏览器根据cookie的name来识别，其实可以直接新建一个新的同名cookie，就可以覆盖原来的cookie
+	
+	Session：
+		服务器端保存数据的技术；域对象（在整个会话期间保存的数据在任意资源都可以取到）
+		作用：
+			域对象共享数据
+		可以在cookie中保存用户身份
+		获取session
+		session保存数据共享数据
+		有生命周期
+			a.创建：第一次用session会创建一个新的session
+				1、第一次获取
+					html（使用servletrequest）
+					jsp（已经好内置session）
+			b.销毁：1、默认30分钟后自动销毁，可以在web.xml里修改session-timeout
+				2、可以手动设置session多少秒后过期session.setMaxInactiveInterval(3);
+				3、使session立即失效session.invalidate();
+				
+				所有新的会话获取的session是新的，是因为浏览器打开关闭开启新会话，
+				cookie不存在了，之前服务器里旧的session依然存在但是找不到了
+				
+			c.如果浏览器cookie被禁用，会话session机制会失效，此时可以使用url重写
+				把要访问的地址动态加上jsessionid
+				response.encodeRedirectURL(request.getContextPath()+"/s.jsp")
+				http://localhost:8080/Cookie_Session/s.jsp;jsessionid=5BA49700884135931EDE6CE1C04A1FDC
+				（jsessionid为小写）
+			d.session的活化和钝化
+				现象：服务器关闭重新启动，只要浏览器没关。还是能获取到session里面的内容
+				钝化：服务器关闭以后，会将session序列化保存在硬盘中
+						SESSIONS.ser是session序列化后的文件，在work/房钱项目下观察
+						D:\informatique\JavaWebWS\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\Cookie_Session
+				活化：服务器再启动时，就会再次加载之前保存的session，把之前的序列化好的文件加载进来
+					  SESSION.ser包含了session域中的所有内容
+					  
+					  session域中的对象如果要同session一起钝化到磁盘中，那么它必须实现序列化接口（见User）
+		

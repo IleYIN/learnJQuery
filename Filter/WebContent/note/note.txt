@@ -1,0 +1,14 @@
+Filter 过滤器
+过滤请求和响应
+
+web服务器的三大组件 Servlet Filer Listener
+
+filter是用来执行过滤任务的一个对象，作用于：
+1、请求一个资源（动态资源Servlet JSP，静态资源）
+2、来自一个资源的响应
+3、两个都可以
+
+filter过滤请求和响应
+1、filter可以拦截请求，可以修改请求头，请求内容
+2、filter可以拦截来自服务器的响应（response）可以系应该响应头和响应内容
+3、放行请求

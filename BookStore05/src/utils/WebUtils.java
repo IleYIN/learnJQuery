@@ -5,8 +5,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
+
+import bean.Cart;
 
 /**
  * 
@@ -49,5 +52,16 @@ public class WebUtils {
 			e.printStackTrace();
 		}
 		return t;
+	}
+	
+	public static Cart getCart(HttpServletRequest request) {
+		//获取购物车
+		HttpSession session = request.getSession();
+		Cart cart = (Cart) session.getAttribute("cart");
+		if(cart==null) {
+			cart = new Cart(); 
+			session.setAttribute("cart", cart);
+		}
+		return cart;
 	}
 }

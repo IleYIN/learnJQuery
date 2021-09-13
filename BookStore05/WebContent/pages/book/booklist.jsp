@@ -27,10 +27,21 @@
 				</form>
 			</div>
 			<div style="text-align: center">
-				<span>您的购物车中有3件商品</span>
+				<%-- <span>您的购物车中有${empty cart.totalCount ? 0 : cart.totalCount}件商品</span> --%>
+				<span>您的购物车中有
+					<c:out value="${cart.totalCount}" default="0"></c:out>
+					件商品</span>
+				<c:if test="${empty title }">
 				<div>
-					您刚刚将<span style="color: red">时间简史</span>加入到了购物车中
+					<span> &nbsp; </span>
 				</div>
+				</c:if>
+				<c:if test="${!empty title }">
+				<div>
+					您刚刚将<span style="color: red">${title }</span>加入到了购物车中
+					<c:remove var="title" scope="session"/>
+				</div>
+				</c:if>
 			</div>
 			<c:forEach items="${page.pageData }" var="book" >
 			<div class="b_list">
@@ -59,7 +70,7 @@
 						<span class="sp2">${book.stock }</span>
 					</div>
 					<div class="book_add">
-						<button>加入购物车</button>
+						<a style="color:blue;" href="client/CartServlet?method=add&id=${book.id }">加入购物车</a>
 					</div>
 				</div>
 			</div>

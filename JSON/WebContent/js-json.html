@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//对象
+	var json = {"name":"名字","age":18};
+	//alert(typeof json);
+	//object转为字符串 便于传输
+	var str = JSON.stringify(json);
+	//alert(typeof str);
+	//json->object 便于解析
+	var obj = JSON.parse(str);
+	//alert(typeof obj);
+	alert(obj.name);
+	//json在js中的应用，用json格式的字符串来传递便于解析
+</script>
+</head>
+<body>
+
+</body>
+</html>

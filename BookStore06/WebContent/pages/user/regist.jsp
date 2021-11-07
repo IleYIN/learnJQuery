@@ -66,7 +66,7 @@
 				return false;
 			}
 			
-			$(this).prop("disabled",true);
+			//$(this).prop("disabled",true);
 			return true;
 		});
 		

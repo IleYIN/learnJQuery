@@ -1,0 +1,25 @@
+JSON
+JavaScript Object Notation
+js对象表示法
+
+var stu = {name:"名字",age:18};//js表示一个对象,js声明对象的属性双引号可以不加
+
+JSON格式就是按照js声明对象的格式来
+key属性必须有双引号
+value为基本类型或引用类型（对象）
+
+声明一个json对象，json称为js对象的字面量-object-->toString
+JSON对象		var stu = {"name":"名字","age":18};
+JSON是一种格式要求，是字符串  {属性：值，属性：值，...}
+
+xml表示
+<stu>
+	<name>名字</name>
+	<age>18</age>
+</stu>
+
+json字符串中的数组
+[{"name":"名字1","age":18},{"name":"名字2","age":18}]
+
+json中的map
+{"no2":{"name":"名字2","age":18},"no1":{"name":"名字1","age":18}}

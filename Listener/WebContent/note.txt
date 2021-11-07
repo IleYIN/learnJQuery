@@ -1,0 +1,39 @@
+Listener
+监听器，javaWeb三大组件之一  Servlet,Filter,Listener
+监听事件的发生
+监听器-->监听事件
+事件发生后触发相应的处理函数
+
+监听器 监听
+	
+	三个对象：
+	ServletRequest: 请求对象
+	ServletContext: 代表当前整个web应用，一个web应用只创建一次
+	HttpSession: session对象
+	（还有一个域对象：PageContext）
+	
+	8个监听器，都是接口，j2ee文档查询，
+	怎么使用监听器：
+		1、实现相应的接口
+	三大类：
+	1、生命周期监听器，监听三个对象的生命周期（创建到销毁）
+		ServletRequestListener: requestDestroyed(请求结束就销毁)
+								requestInitialized(发送请求初始化)
+		ServletContextListener: 监听application，项目加载进服务器时创建，项目卸载时销毁
+		HttpSessionListener:    新会话进来时的时候创建对象，session失效时（强制失效/超时）销毁
+								第一次使用session会创建对象（jsp里面有内置session对象）
+	2、属性监听器：监听三个对象，监听域对象中属性的
+		增(attributeAdded())
+		删(attributeRemoved())
+		改(attributeReplaced())
+		ServletRequestAttributeListener
+		ServletContextAttributeListener
+		HttpSessionAttributeListener
+	3、session固有监听器
+		HttpSessionActivationListener 
+		监听session中某个对象的活化钝化，这个javaBean对象只需要实现接口即可
+		HttpSessionBindingListener 
+		监听一个对象是否绑定到session中（保存在session中）， 这个类来实现HttpSessionBindingListener接口
+		绑定：保存在session中
+		解绑：session中移除
+		

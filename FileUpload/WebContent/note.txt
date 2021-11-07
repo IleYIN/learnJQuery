@@ -1,0 +1,29 @@
+1、文件上传
+	1）上传用户头像
+	2）某些东西的详细信息中的图片
+	
+	文件上传到？
+	数据库？（信息字段） 缺点：占空间，存取慢
+	服务器？ 通常将文件上传到服务器
+			静态文件服务器（图片、视频、js）
+			正常将上传的文件放在项目中的某个地方
+	文件上传准备：
+		在表单上上传准备
+		所有的文件上传, method=post
+		文件上传的表单 必须设置 enctype="multipart/form-data" 
+		
+		点击提交：
+		将文件的流以及表单的所有内容都放在流里提交
+		request.getParameter()对文件上传表单无效，无法获取
+		
+		分隔符------WebKitFormBoundaryayfWJYQtwtTd17cQ
+		表单部件
+		Content-Disposition: form-data; name="username"
+		
+		test
+		------WebKitFormBoundaryayfWJYQtwtTd17cQ
+		Content-Disposition: form-data; name="headerImg"; filename="earth.png"
+		Content-Type: image/png
+		
+	上传：
+		工具：commons-io.jar   commons-fileupload.jar
